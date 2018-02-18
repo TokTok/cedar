@@ -171,7 +171,7 @@ $(() => {
   if (window.location.hash !== "") {
     openFile(demangle(window.location.hash.slice(1)));
   } else {
-    openFile("website/cedar/README.md");
+    openFile("cedar/README.md");
   }
 
   $(window).keydown(event => {

@@ -1,0 +1,10 @@
+language: node_js
+dist: trusty
+node_js: node
+
+install:
+- gem install jekyll
+
+script:
+- (cd backend && npm install)
+- (cd frontend && jekyll build)

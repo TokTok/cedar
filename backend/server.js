@@ -1,13 +1,5 @@
 let initialFiles = [
-  "c-toxcore/auto_tests/friend_request_test.c",
-  "c-toxcore/auto_tests/lossy_packet_test.c",
-  "c-toxcore/auto_tests/lossless_packet_test.c",
-  "c-toxcore/auto_tests/typing_test.c",
-  "c-toxcore/auto_tests/set_name_test.c",
-  "c-toxcore/auto_tests/set_status_message_test.c",
-  "c-toxcore/auto_tests/send_message_test.c",
-  "c-toxcore/auto_tests/save_load_test.c",
-  "c-toxcore/auto_tests/helpers.h",
+  "cedar/README.md",
 ];
 
 // https://github.com/firebase/firepad/issues/251

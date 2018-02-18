@@ -1,6 +1,6 @@
-title: The TokTok Project
+title: Cedar Web IDE
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://toktok.ltd" # the base hostname & protocol for your site
+url: "https://code.tox.chat/editor" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown

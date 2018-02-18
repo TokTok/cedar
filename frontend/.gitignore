@@ -1,0 +1,10 @@
+/Gemfile.lock
+/_site
+/.sass-cache
+/.jekyll-metadata
+
+# auto generated files
+/changelog/c-toxcore.md
+/roadmap/c-toxcore.md
+/spec.md
+/res

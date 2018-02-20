@@ -1,4 +1,23 @@
 let initialFiles = [
+  "c-toxcore/toxav/audio.c",
+  "c-toxcore/toxav/audio.h",
+  "c-toxcore/toxav/bwcontroller.c",
+  "c-toxcore/toxav/bwcontroller.h",
+  "c-toxcore/toxav/groupav.c",
+  "c-toxcore/toxav/groupav.h",
+  "c-toxcore/toxav/msi.c",
+  "c-toxcore/toxav/msi.h",
+  "c-toxcore/toxav/ring_buffer.c",
+  "c-toxcore/toxav/ring_buffer.h",
+  "c-toxcore/toxav/rtp.c",
+  "c-toxcore/toxav/rtp.h",
+  "c-toxcore/toxav/rtp_test.cpp",
+  "c-toxcore/toxav/toxav.api.h",
+  "c-toxcore/toxav/toxav.c",
+  "c-toxcore/toxav/toxav.h",
+  "c-toxcore/toxav/toxav_old.c",
+  "c-toxcore/toxav/video.c",
+  "c-toxcore/toxav/video.h",
   "cedar/README.md",
 ];
 
@@ -39,11 +58,10 @@ function execLines(cmd, args) {
 
 firebase.database()
     .ref("file_list")
-    // "git ls-files --recurse-submodules" doesn't always work.
-    .set(execLines("git", [
-           "submodule", "foreach", '--quiet',
-           'git ls-files | sed -e "s|^|$PWD/|;s|' + ROOT_DIR + '/||"'
-         ]).concat(execLines("git", [ "ls-files" ])));
+    .set(execLines("bazel", [ "query", 'kind("source file", deps(//...))' ])
+             .filter(x => x.startsWith("//"))
+             .map(x => x.startsWith("//:") ? x.substr(3)
+                                           : x.replace(":", "/").substr(2)));
 
 function getFileRef(file) {
   let mangled =
@@ -65,20 +83,11 @@ function runBuild() {
   buildQueued = false;
   buildRunning = true;
   // let bazel = child_process.spawn("bazel", [ "build", "//c-toxcore/..." ], {
-  let bazel = child_process.spawn("bazel",
-                                  [
-                                    "test",
-                                    "//c-toxcore/auto_tests:lossless_packet_test",
-                                    "//c-toxcore/auto_tests:lossy_packet_test",
-                                    "//c-toxcore/auto_tests:set_name_test",
-                                    "//c-toxcore/auto_tests:set_status_message_test",
-                                    "//c-toxcore/auto_tests:save_load_test",
-                                    "//c-toxcore/auto_tests:typing_test",
-                                    "--config=asan", "--test_output=streamed"
-                                  ],
-                                  {
-                                    cwd : ROOT_DIR,
-                                  });
+  let bazel = child_process.spawn(
+      "bazel",
+      [ "build", "//c-toxcore/toxav/...", "--config=asan" ], {
+        cwd : ROOT_DIR,
+      });
 
   let output = firebase.database().ref("bazel_out");
   var bazelLog = "";

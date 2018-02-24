@@ -11,7 +11,7 @@ body {
   float: left;
   width: 200px;
   overflow-y: scroll;
-  max-height: 100vh;
+  max-height: 100%;
   font-family: "Roboto", "Arial", sans-serif;
   font-size: 13px;
 }

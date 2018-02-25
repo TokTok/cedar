@@ -56,12 +56,14 @@ function execLines(cmd, args) {
       .split("\n");
 }
 
+console.log("Initialising file list...")
 firebase.database()
     .ref("file_list")
     .set(execLines("bazel", [ "query", 'kind("source file", deps(//...))' ])
              .filter(x => x.startsWith("//"))
              .map(x => x.startsWith("//:") ? x.substr(3)
                                            : x.replace(":", "/").substr(2)));
+console.log("File list successfully loaded")
 
 function getFileRef(file) {
   let mangled =

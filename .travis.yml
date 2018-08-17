@@ -1,10 +1,11 @@
+---
 language: node_js
 dist: trusty
 node_js: node
 
 install:
-- gem install jekyll
+  - gem install jekyll
 
 script:
-- (cd backend && npm install)
-- (cd frontend && jekyll build)
+  - (cd backend && npm install)
+  - (cd frontend && jekyll build)

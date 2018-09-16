@@ -1,6 +1,7 @@
+---
 title: Cedar Web IDE
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://code.tox.chat/editor" # the base hostname & protocol for your site
+baseurl: ""  # the subpath of your site, e.g. /blog
+url: "https://code.tox.chat/editor"  # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown

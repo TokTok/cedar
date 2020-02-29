@@ -1,11 +1,11 @@
-load("@org_pubref_rules_node//node:rules.bzl", "node_binary")
-
-node_binary(
-    name = "backend",
-    main = "server.js",
-    deps = [
-        "@yarn_modules//:ansi-to-html",
-        "@yarn_modules//:firebase",
-        "@yarn_modules//:firepad",
-    ],
-)
+#load("@org_pubref_rules_node//node:rules.bzl", "node_binary")
+#
+#node_binary(
+#    name = "backend",
+#    main = "server.js",
+#    deps = [
+#        "@yarn_modules//:ansi-to-html",
+#        "@yarn_modules//:firebase",
+#        "@yarn_modules//:firepad",
+#    ],
+#)
